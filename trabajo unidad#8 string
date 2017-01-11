@@ -1,0 +1,179 @@
+#include<iostream>
+#include<iomanip>
+#include<conio.h>
+#include<string>
+using namespace std;
+
+/*void main(){
+	float alfa1,beta;
+	cout<<"ingrese la variable para alfa1: ";
+	cin>>alfa1;
+	cout<<"ingrese la variable para beta: ";
+	cin>>beta;
+	//cout<<fixed<<showpoint<<right<<setw(9)<<setprecision(3)<<alfa1<<endl<<setw(10)<<setprecision(5)<<beta<<endl<<setw(7)<<setprecision(4)<<beta<<endl;
+	//se ingreso la cantidad para la variable alfa1: 
+	//salio: 
+	//se ingresola cantidad para la variable beta: 
+	//salio:
+	//salio: 
+	cout<<scientific<<showpoint<<left<<setprecision(1)<<setw(10)<<alfa1<<endl<<setw(5)<<beta<<endl<<"tolerancia"<<setw(12)<<setprecision(3)<<beta<<endl;
+	//se ingreso la cantidad para la variable alfa1:
+	//salio: 
+	//se ingresola cantidad para la variable beta:
+	//salio:
+	//salio:
+	getch();
+}*/
+
+/*string Extraer_Cadena(string cadena, int pos){
+	string cad;
+	int caract=0,pos1=pos;
+	while(cadena[pos1]!=' '){
+		pos1++;
+		caract++;
+	}
+	return cad=cadena.substr(pos,caract);
+}
+void main(){
+	string mes;
+	int Mes,i=0,espacio=0,aux1=0;
+	mes="Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre ";
+	cout<<"inserte el mes: ";
+	cin>>Mes;
+	while(i < mes.size()){
+		if(mes[i]==' '){
+			espacio++;
+			if(espacio==Mes-1){
+				aux1= i+1;
+			}
+		}
+		i++;
+	}
+	cout<<Extraer_Cadena(mes,aux1);
+	getch();
+}*/
+
+string Extraer_Cadena(string cadena, int &pos){
+	string cad;
+	int caract=0,pos1=pos;
+	while(cadena[pos1]!=' '){
+		pos1++;
+		caract++;
+	}
+	cad=cadena.substr(pos,caract);
+	pos=pos1;
+	return cad;
+}
+void main(){
+	string mes="Enero Febrero Marzo Abril Mayo Junio Julio Agosto Septiembre Octubre Noviembre Diciembre ";
+	string Mes;
+	int i=0,espacios=0;
+	cout<<"ingrese el mes: ";
+	cin>>Mes;
+	while(Mes!=Extraer_Cadena(mes,i)){
+		espacios++;
+		i++;
+	}
+	espacios=espacios+1;
+	cout<<espacios;
+	getch();
+}*/
+
+bool existe_letra(string cade,int &pos,string c){
+	int i=0;
+	while(i<cade.size()){
+		if(cade.substr(i,1)==c){
+			pos=i;
+			return true;
+		}
+		i++;
+	}
+	return false;
+}
+void main(){
+	string alf="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	string alf1="abcdefghijklmnopqrstuvwxyz";
+	string cad,palabra,cadena;
+	int i=0,pos=0;
+	cout<<"ingrese una palabra: ";
+	cin>>palabra;
+	while(i<palabra.size()){
+		cad=palabra.substr(i,1);
+		if(existe_letra(alf,pos,cad)==true){
+			cadena+=alf.substr(pos,1);
+			pos=0;
+		}else{
+			pos=0;
+			if(existe_letra(alf1,pos,cad)==true){
+				cadena+=alf.substr(pos,1);
+				pos=0;
+			}	
+		}
+		i++;
+	}
+	cout<<cadena<<endl;
+	cadena= "";
+	i=0;
+	while(i<palabra.size()){
+		cad=palabra.substr(i,1);
+		if(existe_letra(alf1,pos,cad)==true){
+			cadena+=alf1.substr(pos,1);
+			pos=0;
+		}else{
+			pos=0;
+			if(existe_letra(alf,pos,cad)==true){
+				cadena+=alf1.substr(pos,1);
+				pos=0;
+			}	
+		}
+		i++;
+	}
+	cout<<cadena;
+	getch();
+}
+
+void main(){
+	string nombre_c;
+	string nombre="";
+	string apellido1="";
+	string apellido2="";
+	int i=0,pos=0,aux;
+	cout<<"ingrese nombre completo: ";
+	getline(cin,nombre_c);
+	while(i<nombre_c.size()){
+		if(nombre_c.substr(i,1)!=" "){
+			nombre+=nombre_c.substr(i,1);
+			aux=i+2;
+		}else
+		{
+			i=nombre_c.size();
+		}
+		i++;
+	}
+	    i=aux;
+		while(i<nombre_c.size()){
+			if(nombre_c.substr(i,1)!=" "){
+				apellido1+=nombre_c.substr(i,1);
+				aux=i+2;
+			}else
+			{
+				i=nombre_c.size();
+			}
+			i++;
+		}
+		i=aux;
+		while(i<nombre_c.size()){
+			if(nombre_c.substr(i,1)!=" "){
+				apellido2+=nombre_c.substr(i,1);
+				aux=i+2;
+			}else{
+				i=nombre_c.size();
+			}
+			i++;
+		}
+		nombre_c="";
+		nombre_c=apellido2+","+' '+nombre+' '+apellido1.substr(0,1);
+		cout<<nombre_c;
+		getch();
+	
+}
