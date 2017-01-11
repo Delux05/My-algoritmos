@@ -1,0 +1,70 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+using namespace System;
+
+int main(array<System::String ^> ^args)
+{
+    //Console::WriteLine(L"Hello World");
+	string palabra(string mes,string buscar);
+	void desde_hasta(int &inicial,int &final,string buscar,string mes);
+	string obtener_palabra_frace(int inicial,int final,string mes);
+	string texto;//="enero febrero marzo abril mayo junio julio agosto septiembre otubre noviembre diciembre ";
+	string texto_palabra;
+	int ini,fin;
+	cout<<"De la del texto:";
+	getline(cin,texto);
+	cout<<"Texto a buscar:";
+	getline(cin,texto_palabra);
+	cout<<"Palabra: "<<palabra(texto,texto_palabra);
+	desde_hasta(ini,fin,texto_palabra,texto);
+    cout<<" :Desde_Hasta: "<<ini<<fin<<endl;
+	cout<<"obtener Palabra: "<<obtener_palabra_frace(ini,fin,texto);
+	//string meses,buscar;
+	//cout<<"meses: ";
+	//cin>>meses;
+	//string mes="la luna esta llena";
+	getchar();
+	getchar();
+}
+
+string palabra(string mes,string buscar){
+	//int pos_inicial,i;
+	//int pos_fin;
+	//pos_inicial=0;
+	string pal;
+	//int longitud_cadena=mes.size();
+	int long_buscar=buscar.size();
+	int encontro;
+	//while(i<longitud_cadena){
+		//aux=mes.substr(pos_inicial,long_buscar,buscar);
+		encontro=mes.find(buscar);
+		if(encontro==-1){
+			return "";
+		}else{
+			pal=mes.substr(encontro,long_buscar);
+			mes.replace(encontro,long_buscar,"");
+			return pal;
+		};
+	//}
+}
+
+void desde_hasta(int &inicial,int &final,string buscar,string mes){
+	inicial=mes.find(buscar);
+	final=inicial+buscar.size()-1;
+
+}
+
+string obtener_palabra_frace(int inicial,int final,string mes){
+	string aux=" ";
+	string pal="";
+	int pos;
+	pos=mes.find(aux,inicial);
+	final=mes.find(aux,pos+1);
+	pal=mes.substr(pos+1,final-pos-1);
+	cout<<"Inicial: "<<inicial<<endl;
+	cout<<"pos: "<<pos<<endl;
+	cout<<"final: "<<final;
+	return pal;
+}
