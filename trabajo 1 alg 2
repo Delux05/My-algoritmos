@@ -1,0 +1,53 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+using namespace System;
+
+int main(array<System::String ^> ^args)
+{
+    //Console::WriteLine(L"Hello World");
+	string palabra(string mes,string buscar);
+	string meses,buscar;
+	cout<<"meses: ";
+	cin>>meses;
+	string mes="la luna esta llena";
+	getchar();
+}
+
+string palabra(string mes,string buscar){
+	//int pos_inicial,i;
+	//int pos_fin;
+	//pos_inicial=0;
+	string pal;
+	//int longitud_cadena=mes.size();
+	int long_buscar=buscar.size();
+	int encontro;
+	//while(i<longitud_cadena){
+		//aux=mes.substr(pos_inicial,long_buscar,buscar);
+		encontro=mes.find(buscar);
+		if(encontro==-1){
+			return "";
+		}else{
+			pal=mes.substr(encontro,long_buscar);
+			mes.replace(encontro,long_buscar,"");
+			return pal;
+		};
+	//}
+}
+
+void desde_hasta(int &inicial,int &final,string buscar,string mes){
+	inicial=mes.find(buscar);
+	final=inicial+buscar.size();
+
+}
+
+string obtener_palabra_frace(int inicial,int final,string mes){
+	string aux=" ";
+	string pal;
+	int pos;
+	pos=mes.find(aux,inicial);
+	final=mes.find(aux,pos+1);
+	pal=mes.substr(pos,final);
+	return pal;
+}
