@@ -1,0 +1,34 @@
+#include<iostream>
+#include<conio.h>
+#include<string>
+using namespace std;
+
+string invertir_oracion(string x){
+	string y="";
+	string z="";
+	string w="";
+	x+=" ";
+	int i=0;
+	while(i<x.size()){
+		if(x.substr(i,1)==" "){
+			w=z;
+			z=y;
+			z+=" ";
+			z+=w;
+			y="";
+		}
+		y+=x.substr(i,1);
+		i++;
+	}
+	return z;
+}
+void main(){
+	string oracion="";
+	cout<<"ingrese la oracion: ";
+	do
+	{
+		getline(cin,oracion);
+	}while(oracion.empty());
+	cout<<invertir_oracion(oracion);
+	getch();
+}
