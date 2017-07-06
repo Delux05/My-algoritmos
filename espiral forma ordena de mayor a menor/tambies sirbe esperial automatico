@@ -1,0 +1,112 @@
+#include<iostream>
+#include<conio.h>
+#define MAXFIL 10
+#define MAXCOL 10
+using namespace std;
+
+void cargar(int matrix[MAXFIL][MAXCOL],int x,int y){
+	int i,j;
+	for(i=0;i<x;i++){
+		for(j=0;j<y;j++){
+			cout<<"MAT ["<<i<<"]["<<j<<"]: ";
+			cin>>matrix[i][j];
+		}
+	}
+}
+void mostrar(int matrix[MAXFIL][MAXCOL],int x,int y){
+	int i,j;
+	for(i=0;i<x;i++){
+		for(j=0;j<y;j++){
+			cout<<"MAT ["<<i<<"]["<<j<<"]: "<<matrix[i][j]<<endl;
+		}
+	}
+}
+void espiral(int matrix[MAXFIL][MAXCOL],int x,int y){
+	int i,j,matrix_aux[MAXFIL][MAXCOL],a,b,k,p,q;
+	a=0;
+	for(k=0;k<y;k++){    
+		/*j=k;
+		for(i=k;i<=(y-1-k);i++){   //este es el 1/4 for hipotesis es abajo.
+			matrix[i][j]=cont;
+			cont++;
+		}
+		i=y-1-k;
+		for(j=k+1;j<=x-1-k;j++){   //este es el 2/4 for hipotesis es derecha.
+			matrix[i][j]=cont;
+			cont++;
+		}
+		j=x-1-k;
+		for(i=y-2-k;i>=k;i--){     //este es el 3/4 for hipotesis es arriba.
+			matrix[i][j]=cont;
+			cont++;
+		}
+		i=k;
+		for(j=x-2-k;j>=k+1;j--){   //este es el 4/4 for hipotesis es izquierda.
+			matrix[i][j]=cont;
+			cont++;
+		}*/
+		b=0;
+		i=x-1-k;
+		for(j=y-1-k;j>=k;j--){
+			matrix_aux[i][j]=matrix[a][b];
+			b++;
+		}
+		a++;
+		b=0;
+		j=k;
+		for(i=x-2-k;i>=k;i--){
+			matrix_aux[i][j]=matrix[a][b];
+			b++;
+		}
+		a++;
+		b=0;
+		i=k;
+		for(j=k+1;j<=x-1-k;j++){
+			matrix_aux[i][j]=matrix[a][b];
+			b++;
+		}
+		a++;
+		b=0;
+		j=y-1-k;
+		for(i=x-2-k;i>k;i--){
+			matrix_aux[i][j]=matrix[a][b];
+			b++;
+		}
+	}
+	cout<<"la matriz ordenada en forma espiral";
+	for(p=0;p<x;p++){
+		for(q=0;q<y;j++){
+			cout<<"MAT ["<<p<<"]["<<q<<"]: "<<matrix_aux[p][q]<<endl;
+		}
+	}
+
+}
+void ordenar(int matrix[MAXFIL][MAXCOL],int x,int y){
+	int i,j,a,b,mayor=0;
+	for(i=0;i<x;i++){
+		for(j=0;j<y;j++){
+			for(a=0;a<x;a++){
+				for(b=0;b<y;b++){
+					if(matrix[i][j]>matrix[a][b]){
+						mayor=matrix[i][j];
+						matrix[i][j]=matrix[a][b];
+						matrix[a][b]=mayor;
+					}
+				}
+			}
+		}
+	}
+}
+void main(){
+	int n,m,matriz[MAXFIL][MAXCOL];
+	cout<<"ingrese el numero de filas: ";
+	cin>>n;
+	cout<<"ingrese el numero de columnas: ";
+	cin>>m;
+	cargar(matriz,n,m);
+	ordenar(matriz,n,m);
+	mostrar(matriz,n,m);
+	espiral(matriz,n,m);
+	mostrar(matriz,n,m);
+	_getch();
+}
